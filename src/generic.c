@@ -87,7 +87,7 @@ static int                  VGAFindIsaDevice(GDevPtr dev);
 static Bool                 GenericMapMem(ScrnInfoPtr scrp);
 #endif
 
-static ModeStatus GenericValidMode(int, DisplayModePtr, Bool, int);
+static int GenericValidMode(int, DisplayModePtr, Bool, int);
 
 /* The root of all evil... */
 DriverRec VGA =
@@ -178,7 +178,7 @@ static XF86ModuleVersionInfo GenericVersionRec =
     MODULEVENDORSTRING,
     MODINFOSTRING1,
     MODINFOSTRING2,
-    XORG_VERSION_CURRENT,
+    XF86_VERSION_CURRENT,
     VGA_VERSION_MAJOR, VGA_VERSION_MINOR, VGA_PATCHLEVEL,
     ABI_CLASS_VIDEODRV,
     ABI_VIDEODRV_VERSION,
@@ -1564,7 +1564,7 @@ GenericFreeScreen(int scrnIndex, int flags)
 }
 
 
-static ModeStatus
+static int
 GenericValidMode(int scrnIndex, DisplayModePtr pMode, Bool Verbose, int flags)
 {
     if (pMode->Flags & V_INTERLACE)
