@@ -87,10 +87,10 @@ static int                  VGAFindIsaDevice(GDevPtr dev);
 static Bool                 GenericMapMem(ScrnInfoPtr scrp);
 #endif
 
-static int GenericValidMode(int, DisplayModePtr, Bool, int);
+static ModeStatus GenericValidMode(int, DisplayModePtr, Bool, int);
 
 /* The root of all evil... */
-DriverRec VGA =
+_X_EXPORT DriverRec VGA =
 {
     VGA_VERSION_CURRENT,
     VGA_DRIVER_NAME,
@@ -178,7 +178,7 @@ static XF86ModuleVersionInfo GenericVersionRec =
     MODULEVENDORSTRING,
     MODINFOSTRING1,
     MODINFOSTRING2,
-    XF86_VERSION_CURRENT,
+    XORG_VERSION_CURRENT,
     VGA_VERSION_MAJOR, VGA_VERSION_MINOR, VGA_PATCHLEVEL,
     ABI_CLASS_VIDEODRV,
     ABI_VIDEODRV_VERSION,
@@ -190,7 +190,11 @@ static XF86ModuleVersionInfo GenericVersionRec =
  * This data is accessed by the loader.  The name must be the module name
  * followed by "ModuleData".
  */
-XF86ModuleData vgaModuleData = { &GenericVersionRec, GenericSetup, NULL };
+_X_EXPORT XF86ModuleData vgaModuleData = {
+    &GenericVersionRec,
+    GenericSetup,
+    NULL
+};
 
 static pointer
 GenericSetup(pointer Module, pointer Options, int *ErrorMajor, int *ErrorMinor)
@@ -1564,7 +1568,7 @@ GenericFreeScreen(int scrnIndex, int flags)
 }
 
 
-static int
+static ModeStatus
 GenericValidMode(int scrnIndex, DisplayModePtr pMode, Bool Verbose, int flags)
 {
     if (pMode->Flags & V_INTERLACE)
