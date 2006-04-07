@@ -40,9 +40,10 @@
 #include "config.h"
 #endif
 
+#include <string.h>
+
 #include "xf86.h"
 #include "xf86_OSproc.h"
-#include "xf86_ansic.h"
 #include "compiler.h"
 #include "vgaHW.h"
 #include "xf86PciInfo.h"
@@ -67,9 +68,9 @@
 /* A few things all drivers should have */
 #define VGA_NAME            "VGA"
 #define VGA_DRIVER_NAME     "vga"
-#define VGA_VERSION_NAME    "4.0"
+#define VGA_VERSION_NAME    "4.1"
 #define VGA_VERSION_MAJOR   4
-#define VGA_VERSION_MINOR   0
+#define VGA_VERSION_MINOR   1
 #define VGA_PATCHLEVEL      0
 #define VGA_VERSION_CURRENT ((VGA_VERSION_MAJOR << 24) | \
 			     (VGA_VERSION_MINOR << 16) | VGA_PATCHLEVEL)
