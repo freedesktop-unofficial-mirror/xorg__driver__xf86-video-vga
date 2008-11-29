@@ -66,6 +66,14 @@ AC_CHECK_HEADER(xf1bpp.h,[AC_DEFINE(HAVE_XF1BPP, 1, [Have 1bpp support])],[])
 AC_CHECK_HEADER(xf4bpp.h,[AC_DEFINE(HAVE_XF4BPP, 1, [Have 4bpp support])],[])
 CPPFLAGS="$SAVE_CPPFLAGS"
 
+SAVE_CFLAGS="$CFLAGS"
+CFLAGS="$XORG_CFLAGS"
+AC_CHECK_DECL(xf86ConfigIsaEntity,
+	      [AC_DEFINE(HAVE_ISA, 1, [Have ISA support])],
+	      [],
+	      [#include "xf86.h"])
+CFLAGS="$SAVE_CFLAGS"
+
 if test "x$XSERVER_LIBPCIACCESS" = xyes; then
     PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.8.0])
     XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"

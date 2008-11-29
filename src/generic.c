@@ -120,7 +120,9 @@ static void                 GenericAdjustFrame(int, int, int, int);
 static Bool                 GenericEnterVT(int, int);
 static void                 GenericLeaveVT(int, int);
 static void                 GenericFreeScreen(int, int);
+#ifdef HAVE_ISA
 static int                  VGAFindIsaDevice(GDevPtr dev);
+#endif
 #ifdef SPECIAL_FB_BYTE_ACCESS
 static Bool                 GenericMapMem(ScrnInfoPtr scrp);
 #endif
@@ -303,11 +305,13 @@ static PciChipsets GenericPCIchipsets[] =
 };
 #endif
 
+#ifdef HAVE_ISA
 static IsaChipsets GenericISAchipsets[] =
 {
     {CHIP_VGA_GENERIC, RES_EXCLUSIVE_VGA},
     {-1,               0}
 };
+#endif
 
 static void
 GenericIdentify(int flags)
@@ -419,6 +423,7 @@ GenericProbe(DriverPtr drv, int flags)
     }
 #endif
 
+#ifdef HAVE_ISA
     /* Isa Bus */
     numUsed = xf86MatchIsaInstances(VGA_NAME, GenericChipsets,
 				    GenericISAchipsets, drv,
@@ -454,11 +459,13 @@ GenericProbe(DriverPtr drv, int flags)
 	    xfree(usedChips);
 	}
     }
+#endif
 
     xfree(devSections);
     return foundScreen;
 }
 
+#ifdef HAVE_ISA
 static int
 VGAFindIsaDevice(GDevPtr dev)
 {
@@ -484,6 +491,7 @@ VGAFindIsaDevice(GDevPtr dev)
 
     return (int)CHIP_VGA_GENERIC;
 }
+#endif
 
 static GenericPtr
 GenericGetRec(ScrnInfoPtr pScreenInfo)
