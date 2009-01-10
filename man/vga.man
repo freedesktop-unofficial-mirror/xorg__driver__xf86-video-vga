@@ -60,6 +60,6 @@ This option is recommended for performance reasons when running at depths
 when using those depths in a multi-head configuration where one or more
 of the other screens is operating at a different depth.
 .SH "SEE ALSO"
-__xservername__(1), __xconfigfile__(__filemansuffix__), xorgconfig(1), Xserver(1), X(__miscmansuffix__)
+__xservername__(1), __xconfigfile__(__filemansuffix__), Xserver(1), X(__miscmansuffix__)
 .SH AUTHORS
 Authors include: Marc La France, David Dawes, and Dirk Hohndel.
