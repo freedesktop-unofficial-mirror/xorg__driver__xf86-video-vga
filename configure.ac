@@ -26,6 +26,14 @@ AC_INIT([xf86-video-vga],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
         xf86-video-vga)
 
+AC_MSG_ERROR([
+              **************************************************************
+              This driver is unmaintained and will not receive further
+              patches.  Please use the xf86-video-vesa driver instead.
+              If you have a need for this driver that cannot be met by the
+              vesa driver, please file a bug on http://bugs.freedesktop.org.
+              **************************************************************])
+
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR(.)
